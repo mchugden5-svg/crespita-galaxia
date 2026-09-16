@@ -1,0 +1,535 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti, mi crespita 🌻</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:#02010b;
+    font-family:Arial, sans-serif;
+    color:white;
+}
+
+/* FONDO */
+
+.space{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            #35146b 0%,
+            #12052f 35%,
+            #03020d 75%
+        );
+}
+
+/* ESTRELLAS */
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+    from{
+        opacity:.2;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.8);
+    }
+}
+
+/* LUZ CENTRAL */
+
+.glow{
+    position:absolute;
+    width:450px;
+    height:450px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,220,100,.25),
+            rgba(180,80,255,.12),
+            transparent 70%
+        );
+
+    filter:blur(15px);
+}
+
+/* FLORES */
+
+.flower{
+    position:absolute;
+    font-size:50px;
+    filter:drop-shadow(0 0 12px #ffd900);
+    animation:flotar 5s ease-in-out infinite;
+}
+
+.f1{
+    top:12%;
+    left:12%;
+}
+
+.f2{
+    top:20%;
+    right:10%;
+    animation-delay:1s;
+}
+
+.f3{
+    bottom:15%;
+    left:10%;
+    animation-delay:2s;
+}
+
+.f4{
+    bottom:12%;
+    right:12%;
+    animation-delay:3s;
+}
+
+@keyframes flotar{
+    0%,100%{
+        transform:translateY(0) rotate(-5deg);
+    }
+
+    50%{
+        transform:translateY(-25px) rotate(8deg);
+    }
+}
+
+/* PANTALLA INICIAL */
+
+.start{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:25px;
+
+    z-index:10;
+
+    background:rgba(0,0,0,.2);
+}
+
+.start h1{
+    font-size:32px;
+    margin-bottom:15px;
+
+    text-shadow:
+        0 0 15px #ffd83d,
+        0 0 30px #b86cff;
+}
+
+.start p{
+    font-size:17px;
+    color:#ddd;
+    margin-bottom:30px;
+}
+
+.start button{
+    border:none;
+    padding:15px 30px;
+
+    border-radius:30px;
+
+    background:#ffd83d;
+    color:#281600;
+
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 20px rgba(255,216,61,.7);
+
+    transition:.3s;
+}
+
+.start button:hover{
+    transform:scale(1.08);
+}
+
+/* CARTA */
+
+.letter{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.5);
+
+    width:90%;
+    max-width:520px;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    background:
+        rgba(20,8,45,.88);
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 0 50px rgba(220,120,255,.35);
+
+    backdrop-filter:blur(15px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        1s ease;
+
+    z-index:20;
+
+    text-align:center;
+}
+
+.letter.active{
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+.letter h2{
+    color:#ffd83d;
+
+    font-size:28px;
+
+    margin-bottom:22px;
+
+    text-shadow:
+        0 0 15px rgba(255,216,61,.7);
+}
+
+.letter p{
+    font-size:16px;
+
+    line-height:1.7;
+
+    margin-bottom:16px;
+
+    color:#f4eef8;
+}
+
+.final{
+    margin-top:25px;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    color:#ffd83d;
+
+    text-shadow:
+        0 0 15px rgba(255,216,61,.8);
+}
+
+/* CORAZONES */
+
+.heart{
+    position:absolute;
+
+    bottom:-30px;
+
+    font-size:22px;
+
+    pointer-events:none;
+
+    animation:
+        subir 5s linear forwards;
+
+    z-index:30;
+}
+
+@keyframes subir{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            scale(1.5);
+
+        opacity:0;
+    }
+}
+
+/* CELULAR */
+
+@media(max-width:600px){
+
+    .start h1{
+        font-size:27px;
+    }
+
+    .start p{
+        font-size:15px;
+    }
+
+    .flower{
+        font-size:35px;
+    }
+
+    .letter{
+        padding:24px 18px;
+    }
+
+    .letter h2{
+        font-size:24px;
+    }
+
+    .letter p{
+        font-size:15px;
+    }
+
+    .final{
+        font-size:21px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="space">
+
+    <div class="glow"></div>
+
+    <!-- FLORES -->
+    <div class="flower f1">🌻</div>
+    <div class="flower f2">🌻</div>
+    <div class="flower f3">🌻</div>
+    <div class="flower f4">🌻</div>
+
+    <!-- PANTALLA INICIAL -->
+
+    <div class="start" id="start">
+
+        <h1>
+            Tengo algo especial<br>
+            para ti 🌻
+        </h1>
+
+        <p>
+            Mira las estrellas...<br>
+            y descubre lo que preparé para ti.
+        </p>
+
+        <button onclick="abrirCarta()">
+            ✨ Descubrir ✨
+        </button>
+
+    </div>
+
+    <!-- CARTA -->
+
+    <div class="letter" id="letter">
+
+        <h2>
+            Para mi crespita hermosa 🌻
+        </h2>
+
+        <p>
+            No sé si existen palabras suficientes para
+            explicar todo lo que siento por ti, pero quiero
+            intentarlo.
+        </p>
+
+        <p>
+            Me encanta tu forma de ser, tu manera de tratar
+            a las personas y esa forma tan bonita que tienes
+            de preocuparte por mí.
+        </p>
+
+        <p>
+            Me encanta cómo me cuidas, cómo estás pendiente
+            de mí y cada pequeño detalle que tienes conmigo.
+        </p>
+
+        <p>
+            Mientras más te conozco, más me enamoro de ti.
+            Cada día descubro algo nuevo que hace que me
+            gustes todavía más.
+        </p>
+
+        <p>
+            Eres una persona espectacular.
+            Eres hermosa, especial y única para mí.
+        </p>
+
+        <p>
+            Sé que podemos tener días buenos y días difíciles,
+            pero quiero que sepas que quiero seguir estando
+            contigo, compartiendo momentos, riéndonos,
+            aprendiendo y superando juntos lo que venga.
+        </p>
+
+        <p>
+            Porque si algo tengo claro es que cada día
+            me enamoro un poquito más de ti.
+        </p>
+
+        <p>
+            Gracias por estar en mi vida y por ser esa
+            persona que hace que mis días sean diferentes.
+        </p>
+
+        <div class="final">
+            Te amo mucho,<br>
+            mi crespita hermosa ❤️🌻
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MÚSICA -->
+
+<audio id="music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* CREAR ESTRELLAS */
+
+for(let i = 0; i < 200; i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    document
+        .querySelector(".space")
+        .appendChild(star);
+}
+
+
+/* ABRIR CARTA */
+
+function abrirCarta(){
+
+    document
+        .getElementById("start")
+        .style.display = "none";
+
+    document
+        .getElementById("letter")
+        .classList.add("active");
+
+    const music =
+        document.getElementById("music");
+
+    music.play().catch(() => {});
+
+    crearCorazones();
+
+}
+
+
+/* CREAR CORAZONES */
+
+function crearCorazones(){
+
+    for(let i = 0; i < 40; i++){
+
+        setTimeout(() => {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className = "heart";
+
+            heart.innerHTML =
+                Math.random() > .5
+                ? "❤️"
+                : "💛";
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            },7000);
+
+        }, i * 120);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
